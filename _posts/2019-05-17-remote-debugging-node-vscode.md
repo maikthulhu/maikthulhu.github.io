@@ -22,17 +22,17 @@ Look at that beautiful editor, marvel at it. Click around, get comfy, install yo
 
 If you attempt to do any debugging without first opening a file (what exactly are you expecting here?) you may end up seeing the following error.
   
-![VScode asking to open folder](/img/vscode-open-folder-before-debugging.png)
+![VScode asking to open folder](/assets/img/vscode-open-folder-before-debugging.png)
   
 If that's the case... well, follow the instructions and use the File menu to open a folder. It doesn't really matter which one at this point, but do know that the configuration file you edit below (`launch.json`) is going to live under the project folder you select, in the `.vscode/` folder.
   
 If you've tried some local debugging already, you may have clicked here and there, tried to start debugging, and maybe run up against something similar to the following.
   
-![launch.json](/img/vscode-launch-json.png)
+![launch.json](/assets/img/vscode-launch-json.png)
   
 Nevermind me trying to debug a markdown document, there's that "Open launch.json" button. If you're not familiar with VS Code, that file is what contains the various definitions used for launching and/or debugging your projects. If you click that button, `launch.json` will open in a new tab. If you don't happen to encounter that button, click the debug button on the left (the little bug icon with the no circle on it), then click the gear icon next to the play and launch program selections near the top.
   
-![Edit launch.json](/img/vscode-debug-edit-launch-json.png)
+![Edit launch.json](/assets/img/vscode-debug-edit-launch-json.png)
   
 If it asks you which environment to choose, select Node.js and continue. You'll then likely end up looking at something simliar to the following.
   
@@ -85,15 +85,15 @@ As you can see we added another `node`-type configuration, set its `request` typ
 
 The default debugging configuration for Node.js is to listen only on the loopback interface on port `9229`. By binding to that address (`127.0.0.1`) all remote connections will be refused. You can confirm this by launching node with `--inspect` and observing the following.
   
-![Node.js debug startup](/img/node-debug.png)
+![Node.js debug startup](/assets/img/node-debug.png)
   
 You can further confirm this by inspecting the output of `netstat -ant` (or the equivalent on your platform) and seeing that it specifically binds to `127.0.0.1:9229` as you can see in the following.
   
-![netstat -an showing local bind](/img/netstat-node-bind-localhost.png)
+![netstat -an showing local bind](/assets/img/netstat-node-bind-localhost.png)
   
 This is a good thing! Notice that `ws://` protocol descriptor? That stands for WebSocket. WebSockets are increasingly how the active web content world tends to work, but more importantly, the traffic is sent in the clear. That's right, there's no native encryption here. Now WebSockets does have a mechanism for attempting to prevent the reading of arbitrary bytes on the wire, and for more information on that I suggest you turn to Google or, if you're up for some light reading, [RFC6455](https://tools.ietf.org/html/rfc6455) which defines WebSockets. This feature doesn't (please correct me if I'm wrong) protect a full on packet capture as the "keys" used to XOR the data in transit are also transmitted in the clear.
   
-![Wireshark capture attaching to debugger](/img/node-websocket-wireshark-capture.png)
+![Wireshark capture attaching to debugger](/assets/img/node-websocket-wireshark-capture.png)
   
 The best way to ensure we are as secure as we can be is to employ an SSH tunnel. What this allows us to do is open an SSH session to our remote system and then tunnel all of our traffic from our local system (where we're running VS Code) to the remote system over a specified port. All traffic sent over this tunnel will be encrypted and we can do our debugging without (too much) worry of snoopers.
   
@@ -143,21 +143,21 @@ Initiate the SSH tunnel:
   
 Attach your local VS Code to the remote debugger by selecting the configuration we created earlier and then click the play button to begin debugging.
   
-![Begin debugging](/img/vscode-begin-debugging.png)
+![Begin debugging](/assets/img/vscode-begin-debugging.png)
   
 If all goes well we should see the remote Node.js console report a debugger was attached.
   
-![Debugger attached](/img/node-debugger-attached.png)
+![Debugger attached](/assets/img/node-debugger-attached.png)
   
 And then VS Code will show us just how amazing these features are!
   
-![VS Code attached to remote debugger](/img/vscode-attached-remote-debugging.png)
+![VS Code attached to remote debugger](/assets/img/vscode-attached-remote-debugging.png)
   
 Look, there's our code right there! And on the left we can see the local variable scope!! We even have debugging controls in the toolbar at the top, and a handy dandy debug console at the bottom!!!
   
 You can step over or into code. See how it shows us the call stack and loaded scripts? Wanna see what happens when we step _into_ `safeEval` as it's running? Try it! Hit the step over button (right arrow) three times, then the step into button (down arrow) once.
   
-![VS Code stepped into safeEval](/img/vscode-stepped-into-safeeval.png)
+![VS Code stepped into safeEval](/assets/img/vscode-stepped-into-safeeval.png)
   
 Now we're on the first line of the implementation of `safeEval`! We can see on the left our local scope has channged and we have access to the values passed in (`code` as a string literal, `context` as an object, etc) as well as the local function variables.
   
@@ -165,7 +165,7 @@ Want to take it further? I know you do. Step over until line 13, and then step i
 
 Curious and curiouser... We land in the `Script` class constructor. `Script` is a sublcass of `ContextifyScript`. If we step through the constructor far enough we end up in a `try/catch` which calls `super()` (the constructor of the super class of `Script` - `ContextifyScript`) with a bunch of parameters including the code we are attempting to run in `code` and the context we passed in `parsingContext`.
   
-![VS Code stepped into Script](/img/vscode-stepping-through-script.png)
+![VS Code stepped into Script](/assets/img/vscode-stepping-through-script.png)
   
 As we can see there, `parsingContext` shows us we have access to our `bob` object, which is what we should expect. What's fun, though, is because `bob` was created outside the `vm` instance, we could use that to climb back out of the sandbox as well. Fortunately, the current context object itself is enough to climb back out with.
 
