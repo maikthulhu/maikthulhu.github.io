@@ -12,42 +12,30 @@ baseurl: ""
 #url: "http://username.github.io/projectname"
 #baseurl: "/projectname"
 =======
+
+-*-*-*-*-*-*-*-
+
 # Welcome to Beautiful Jekyll!
 # This config file is meant for settings that affect your entire website. When you first
 # set up your website you should go through all these settings and edit them, but after
 # the initial set up you won't need to come back to this file often.
->>>>>>> 0fe5fabc9acbbf45f860eba34a62145f67451b99
 
 # --- Required options --- #
 
 # Name of website
-<<<<<<< HEAD
 title: maik's blog
 
-# Short description of your site
-description: A blog about infosec stuff and my own path along the way.
-=======
-title: My Website
-
 # Your name to show in the footer
-author: Some Person
->>>>>>> 0fe5fabc9acbbf45f860eba34a62145f67451b99
+author: maik
 
 # --- List of links in the navigation bar --- #
 
 navbar-links:
   whoami: "whoami"
-  Resources:
-<<<<<<< HEAD
-    - Beautiful Jekyll: "http://deanattali.com/beautiful-jekyll/"
-    - Learn markdown: "http://www.markdowntutorial.com/"
-    - GitHub Pages: "https://pages.github.com/"
-      # Author's home: "http://deanattali.com"
-=======
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
->>>>>>> 0fe5fabc9acbbf45f860eba34a62145f67451b99
+  #Resources:
+  #  - Beautiful Jekyll: "https://beautifuljekyll.com"
+  #  - Learn markdown: "https://www.markdowntutorial.com/"
+  # Author's home: "https://deanattali.com"
 
 # --- Logo --- #
 
@@ -62,34 +50,18 @@ round-avatar: true
 # then specify the following parameter
 #title-img: /path/to/image
 
-
-<<<<<<< HEAD
-# Change all these values or delete the ones you don't want.
-# Important: you must keep the "name" parameter, everything else you can remove
-author:
-  name: maik
-=======
 # --- Footer social media links --- #
->>>>>>> 0fe5fabc9acbbf45f860eba34a62145f67451b99
 
 # Select the social network links that you want to show in the footer.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-<<<<<<< HEAD
-  rss: true
-# email: "someone@example.com"
-# facebook: daattali
   github: maikthulhu
   twitter: maik
-=======
-  email: "someone@example.com"
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: c/daattali
+#  email: "someone@example.com"
+#  facebook: deanattali
+#  patreon: DeanAttali
+#  youtube: c/daattali
 #  medium: yourname
->>>>>>> 0fe5fabc9acbbf45f860eba34a62145f67451b99
 #  reddit: yourname
 #  linkedin: daattali
 #  xing: yourname
@@ -109,27 +81,20 @@ social-network-links:
 
 # If you want to show a link to an RSS in the footer, add the site description here.
 # If you don't want to show an RSS link, remove the following line.
-rss-description: This website is a virtual proof that I'm awesome
+#rss-description: This website is a virtual proof that I'm awesome
 
 # --- General options --- #
 
 # Select which social network share links to show in posts
 share-links-active:
   twitter: true
-  facebook: true
-<<<<<<< HEAD
-  google: true
-=======
->>>>>>> 0fe5fabc9acbbf45f860eba34a62145f67451b99
-  linkedin: true
+  facebook: false
+  linkedin: false
   vk: false
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-<<<<<<< HEAD
-url-pretty: "maikthulhu.github.io"  # eg. "deanattali.com/beautiful-jekyll"
-=======
-url-pretty: "MyWebsite.com"
+url-pretty: "maikthulhu.github.io"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
@@ -142,10 +107,9 @@ feed_show_tags: true
 
 # Add a search button to the navbar
 post_search: true
->>>>>>> 0fe5fabc9acbbf45f860eba34a62145f67451b99
 
 # The keywords to associate with your website, for SEO purposes
-#keywords: "my,list,of,keywords"
+keywords: "hacking,security"
 
 # --- Colours / background image --- #
 
