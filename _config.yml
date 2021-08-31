@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-# --- General options --- #
-
-# url is the full website URL
-# baseurl is the website's URL without the hostname
-
-# If you are building a simple GitHub user page (http://username.github.io) then use these settings:
-url: "http://maikthulhu.github.io"
-baseurl: ""
-
-# If you are building a GitHub project page then use these settings:
-#url: "http://username.github.io/projectname"
-#baseurl: "/projectname"
-=======
-
--*-*-*-*-*-*-*-
-
 # Welcome to Beautiful Jekyll!
 # This config file is meant for settings that affect your entire website. When you first
 # set up your website you should go through all these settings and edit them, but after
