@@ -10,12 +10,12 @@ I created a new tool! Well... I re-wrote an existing tool. And it's slower than 
 
 ### TL; DR
 Here's the library and example scripts, but don't come whining to me about its shortcomings (or do, just create an issue or PR please).
-- https://github.com/maikthulhu/ERLPopper
+- [https://github.com/maikthulhu/ERLPopper](https://github.com/maikthulhu/ERLPopper)
 
 ## Background
 I was recently tasked with recovering access to an Erlang cluster node service where the configuration and log files had been deleted. Ultimately, since we had root access to the system, the solution was to a) check `/proc/<pid>/cmdline` to get the cookie passed as an argument, and b) learn how to use the `erl` command line tool to connect to the node with the given cookie. The cool part though was that after you get connected, you get immediate remote code execution (RCE).
 
-![cat /proc/<pid>/cmdline](/assets/img/cat-proc-pid-cmdline.png)
+![cat /proc/\<pid\>/cmdline](/assets/img/cat-proc-pid-cmdline.png)
 
 ## But why the new tool though?
 I Googled how to connect to Erlang nodes and came across the `erl` tool's documentation. This lets you connect to a node and run arbitrary code, including calling OS commands. I passed it the host info and the suspected cookie from above, et voila: RCE. Now any RCE is still exciting. I threw my hands up, exclaimed "fuck yeah!" out loud to my empty office, and messaged my coworker "I'm in!!!".
@@ -29,7 +29,7 @@ That simple solution above took a few hours to arrive at, 100% due to my ignoran
 [^3]: https://github.com/rapid7/metasploit-framework/pull/11089
 
 ## .... but really why the new tool????
-In the post-pop clarity that ensued, I realized a few things. I hadn't done anything more exciting than telnet'ing to a service with a magic key and giving it the commands it was designed to run. Next, the cookie evidence we found did not match the Erlang/OTP-generated format of 20 uppercase characters ([A-Z]{20}) (clue #1), so the brute force attack was essentially pointless since it's only useful when attacking a cluster running with an auto-generated cookie. And finally, despite me trying this non-standard cookie specifically, the RCE scripts were still failing, even though the official tool worked (clue #2).
+In the post-pop clarity that ensued, I realized a few things. I hadn't done anything more exciting than telnet'ing to a service with a magic key and giving it the commands it was designed to run. Next, the cookie evidence we found did not match the Erlang/OTP-generated format of 20 uppercase characters (`[A-Z]{20}`) (clue #1), so the brute force attack was essentially pointless since it's only useful when attacking a cluster running with an auto-generated cookie. And finally, despite me trying this non-standard cookie specifically, the RCE scripts were still failing, even though the official tool worked (clue #2).
 
 After reading through the available information and current tools, I wanted to really understand how messages were passing between hosts. The [official documentation](https://erlang.org/doc/apps/erts/erl_dist_protocol.html) definitely helps, but I've always learned best by trying and failing and trying again. Thus, this tool was born using Python (my preferred prototyping language) and my current understanding of how best to implement it.
 
@@ -105,6 +105,6 @@ As soon as I swapped out the old capability flags with this value, my script rec
 After a little more trial and error, by toggling every other bit in turn until I received a failure, the only additional flag that was needed was `DFLAG_BIG_CREATION`. This gives us a final working capability flags value of `0x07499c`. And that's how I spent a week determining that all I needed to change was a single bit.
 
 ## Conclusion and Next Steps
-I could have stopped there and abandoned my project but I had a specific goal in mind. So I spent another day or so fixing up my library and implementing a couple examples that will be useful in attacking systems at large. Still, though I did learn quite a bit, I can't help but thinking I tried re-inventing the wheel. I'll contribute the find back to those projects with the hope that those tools work again on a wide range of systems. Though what might be more beneficial is a) something to try various capability flags when encountering a "not_allowed" message, and b) implementing the "new" protocol, as I don't believe that's been done.
+I could have stopped there and abandoned my project but I had a specific goal in mind. So I spent another day or so fixing up my library and implementing a couple examples that will be useful in attacking systems at large. Still, though I did learn quite a bit, I can't help but thinking I tried re-inventing the wheel. I'll contribute the find back to those projects with the hope that those tools work again on a wider range of systems. Though what might be more beneficial is a) something to try various capability flags when encountering a "not_allowed" message, and b) implementing the "new" protocol, as I don't believe that's been done.
 
 Thanks for reading, and keep an eye out for a follow-up to this post, it should be a lot more fun.
