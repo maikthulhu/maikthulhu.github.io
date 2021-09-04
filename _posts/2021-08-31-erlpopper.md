@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Introducting ERLPopper.py"
+title:      "Introducing ERLPopper.py"
 date:       2021-08-31
 tags:       [erlang, python, epmd]
 ---
