@@ -27,12 +27,14 @@ _Tools_
 
 _Task_
 >write a routine that takes a list of items (strings, objects, whatever), and returns a list of tuples of combinations of each item, paired with either a 0 or 1, indicating whether the item is "off" or "on".
-```
+
 ## Example
 _input:_
 ```
 [
-    "a", "b", "c"
+    "a",
+    "b",
+    "c"
 ]
 ```
 
