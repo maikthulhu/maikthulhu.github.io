@@ -39,7 +39,7 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   github: maikthulhu
-  twitter: maik
+  mastodon: infosec.exchange/@maik
 #  email: "someone@example.com"
 #  facebook: deanattali
 #  patreon: DeanAttali
@@ -58,7 +58,6 @@ social-network-links:
 #  yelp: yourname
 #  telegram: yourname
 #  calendly: yourname
-#  mastodon: instance.url/@username
 #  ORCID: your ORCID ID
 #  google-scholar: your google scholar
 

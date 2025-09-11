@@ -11,4 +11,4 @@ I've made a career out of fixing broken computery things.  Mostly IT, some custo
 - I'm a gamer.
 - I'm lawful good.
 
-Not sure what else there is to say.  I'm most easily reachable via Twitter (@maik) or [NetSec Focus' MatterMost server](https://chat.netsecfocus.com/).
+Not sure what else there is to say.  I'm most easily reachable via Mastodon (infosec.exchange/@maik).
